@@ -1,10 +1,22 @@
 import Link from "next/link"
 
-import { jwtDecode } from "jwt-decode";
-
-import { auth } from '@clerk/nextjs/server'
+import { useReverification } from '@clerk/nextjs'
 
 export default async function AuthPage(){
+
+  const performAction  = useReverification(myAction)
+
+  const handleReverificationClick = async () => {
+    const myData = await performAction();
+    // If `myData` is null, the user cancelled the reverification process
+    // You can choose how your app responds. This example returns null.
+    if (myData) {
+      router.push('/meal-order')
+    } else {
+      // add failure logic here
+      return
+    }
+  }
 
     return (
       <div className="-mt-16">
@@ -18,9 +30,15 @@ export default async function AuthPage(){
         <Link href="/test-auth-middleware" className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105">
             Auth Set In Middleware
         </Link> 
-        <Link href="/test-auth-middleware" className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105">
-            Auth Set In Middleware
-        </Link>        
+        <Link href="/test-component-auth" className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105">
+            auth() Set In Component
+        </Link>
+        <Link href="/test-component-auth-protect" className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105">
+            auth.protect() Set In Component
+        </Link>
+        <button className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105" onClick={handleReverificationClick}>
+          useReverification() test
+        </button>      
       </div>
       </div>
     )
