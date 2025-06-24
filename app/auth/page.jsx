@@ -2,6 +2,8 @@ import Link from "next/link"
 
 import { useReverification } from '@clerk/nextjs'
 
+import { myAction } from  '../actions';
+
 export default async function AuthPage(){
 
   const performAction  = useReverification(myAction)
@@ -35,10 +37,7 @@ export default async function AuthPage(){
         </Link>
         <Link href="/test-component-auth-protect" className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105">
             auth.protect() Set In Component
-        </Link>
-        <button className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105" onClick={handleReverificationClick}>
-          useReverification() test
-        </button>      
+        </Link>  
       </div>
       </div>
     )

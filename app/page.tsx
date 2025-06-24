@@ -34,6 +34,11 @@ export default function Home() {
           Auth Tests
         </Link>
       </button>
+      <button className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105">
+        <Link href="/reverification">
+          Reverification Test
+        </Link>
+      </button>
     </>
   );
 }
