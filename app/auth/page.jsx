@@ -1,6 +1,11 @@
 import Link from "next/link"
 
-export default function AuthPage(){
+import { jwtDecode } from "jwt-decode";
+
+import { auth } from '@clerk/nextjs/server'
+
+export default async function AuthPage(){
+
     return (
       <div className="-mt-16">
       <div className="text-3xl mt-10">
@@ -12,7 +17,10 @@ export default function AuthPage(){
         </Link>
         <Link href="/test-auth-middleware" className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105">
             Auth Set In Middleware
-        </Link>                
+        </Link> 
+        <Link href="/test-auth-middleware" className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105">
+            Auth Set In Middleware
+        </Link>        
       </div>
       </div>
     )

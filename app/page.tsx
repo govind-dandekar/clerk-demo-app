@@ -29,6 +29,11 @@ export default function Home() {
           <span className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105"><SignUpButton/></span>
         </div>
       </SignedOut>
+      <button className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105">
+        <Link href="/auth">
+          Auth Tests
+        </Link>
+      </button>
     </>
   );
 }
