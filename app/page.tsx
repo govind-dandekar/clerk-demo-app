@@ -16,13 +16,13 @@ export default function Home() {
       <div className="text-3xl mt-10">
         Whistler Ski Student Meal Portal 
       </div>
-      <SignedIn>
+      {/* <SignedIn>
           <button className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105">
             <Link href="/organization">
               Organization Page
             </Link>
           </button>
-      </SignedIn>
+      </SignedIn> */}
       <SignedOut>
         <div className="grid grid-cols-2 gap-4">
           <span className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105"><SignInButton/></span>
