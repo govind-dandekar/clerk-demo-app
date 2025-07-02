@@ -9,11 +9,11 @@ export default async function HomePage(){
     const canAccess = has({ role: 'org:admin' })
 
     if (!canAccess){
-        redirect('/auth-has-not-authorized')
+        redirect('/auth/auth-has-not-authorized')
     } 
 
     return (
-        <div>
+        <div className="-mt-16">
             <p>Page is set as private in middleware.ts but include has role: 'org:admin'</p>
             <p>Non-org:admin users will be redirected to '/auth-has-not-authorized'</p>
             <p className="mt-4">org level from sessionClaims: {sessionClaims?.orgRole}</p>

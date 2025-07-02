@@ -1,16 +1,11 @@
 import { auth } from "@clerk/nextjs/server";
 
 export default async function HomePage(){
-    
-    const { sessionClaims, orgRole } = await auth();
 
-    console.log(sessionClaims);
-    
-    // const orgRole = sessionClaims?.orgRole;
-    console.log(orgRole)
+    const { orgRole } = await auth();
 
     return (
-        <div>
+        <div className="-mt-16">
             <p>Redirected to this page because user does not have the 'org:admin' role</p>
             {orgRole ? 
                 <p>User Role: {orgRole}</p> :
