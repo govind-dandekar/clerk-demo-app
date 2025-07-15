@@ -2,7 +2,7 @@
 
 import { useReverification, useSession } from '@clerk/nextjs'
 
-import { singleFactorAction, multiFactorAction } from  '../actions/actions';
+import { singleFactorAction, multiFactorAction, secondFactorAction } from  '../actions/actions';
 
 import { useRouter } from 'next/navigation'
 
@@ -16,6 +16,7 @@ export default function ReverificationPage(){
 
   const performOneFactorAction  = useReverification(singleFactorAction)
   const performMultiFactorAction  = useReverification(multiFactorAction)
+  const performSecondFactorAction = useReverification(secondFactorAction);
 
   const router = useRouter();
 
@@ -45,6 +46,20 @@ export default function ReverificationPage(){
     }
   }
 
+  const handleSecondFactorReverificationClick = async () => {
+    const myData = await performSecondFactorAction();
+    // If `myData` is null, the user cancelled the reverification process
+    // You can choose how your app responds. This example returns null.
+    if (myData) {
+      router.push('/reverification-page')
+    } else {
+      // add failure logic here
+      return
+    }
+  }
+
+  
+
   const factorOneAgeText = session?.factorVerificationAge[0] === 1 ? "minute" : "minutes"
   const factorTwoAgeText = session?.factorVerificationAge[1] === 1 ? "minute" : "minutes"
 
@@ -59,6 +74,9 @@ export default function ReverificationPage(){
             useReverification() MFA test
         </button>
         <p className="mt-4">Second Factor Verification Age: {session?.factorVerificationAge[1]} {factorTwoAgeText}</p>
+        <button className="bg-blue-600 text-white mt-6 px-6 py-2 hover:bg-blue-800 hover:scale-105" onClick={handleSecondFactorReverificationClick}>
+            useReverification() Second Factor Test
+        </button>
     </div>
 
   )
